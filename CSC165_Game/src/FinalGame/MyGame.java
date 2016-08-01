@@ -13,8 +13,6 @@ import javax.script.ScriptException;
 import graphicslib3D.Matrix3D;
 import graphicslib3D.Point3D;
 import graphicslib3D.Vector3D;
-import net.java.games.input.Component.Identifier.Button;
-import net.java.games.input.Component.Identifier.Key;
 import sage.app.BaseGame;
 import sage.audio.AudioManagerFactory;
 import sage.audio.AudioResource;
@@ -25,19 +23,14 @@ import sage.audio.SoundType;
 import sage.camera.ICamera;
 import sage.display.IDisplaySystem;
 import sage.input.IInputManager;
-import sage.input.action.IAction;
 import sage.input.action.QuitGameAction;
-import sage.model.loader.OBJLoader;
 import sage.networking.IGameConnection.ProtocolType;
 import sage.physics.IPhysicsEngine;
 import sage.physics.IPhysicsObject;
-import sage.physics.PhysicsEngineFactory;
 import sage.scene.Group;
-import sage.scene.Leaf;
 import sage.scene.Model3DTriMesh;
 import sage.scene.SceneNode;
 import sage.scene.SkyBox;
-import sage.scene.TriMesh;
 import sage.terrain.TerrainBlock;
 import sage.texture.Texture;
 import sage.texture.TextureManager;
@@ -56,7 +49,6 @@ public class MyGame extends BaseGame{
 	private Sound background; 
 	private IPhysicsObject ballP, groundPlaneP;
 	private IPhysicsEngine physicsEngine;
-	private TriMesh devil, statue;
 	private SkyBox skybox;
 	private Group rootNode;
 	private TerrainBlock hillTerrain;
@@ -69,7 +61,6 @@ public class MyGame extends BaseGame{
 	ScriptEngineManager factory ;
 	ScriptEngine jsEngine;
 	String scriptFileName;
-	private int count1; 
 	Avatar ava;
 	SceneNode girl; 
 	Model3DTriMesh mesh; 
@@ -80,9 +71,6 @@ public class MyGame extends BaseGame{
 		this.serverAddress =serveAddr;
 		this.serverPort =sPort;
 		this.serverProtocol = ProtocolType.TCP;
-		count1 = 0; 
-		//rootNode = new Group("Root Node");
-		
 		factory = new ScriptEngineManager(); 
 		scriptFileName = "materials/CreateWorld.js";
 		
@@ -200,9 +188,7 @@ public class MyGame extends BaseGame{
 		
 		rootNode.updateGeometricState(time, true);
 		
-	//	Matrix3D temp1 = mesh.getLocalTranslation();
-		Matrix3D temp = skybox.getLocalTranslation();
-	//	temp.translate(temp1.getCol(3).getX(),(float)(temp1.getCol(3).getY()+50),temp1.getCol(3).getZ());
+	skybox.getLocalTranslation();
 		
 	//	temp.translate(0, 50, 0);
 		//skybox.setLocalTranslation(temp);
@@ -215,7 +201,7 @@ public class MyGame extends BaseGame{
 	}
 	
 	public void initAudio(){
-		AudioResource re1, re2; 
+		AudioResource re1; 
 		audioMgr = AudioManagerFactory.createAudioManager("sage.audio.joal.JOALAudioManager");
 		if(!audioMgr.initialize()){
 			System.out.println("Unable to start sound");
@@ -253,20 +239,7 @@ public class MyGame extends BaseGame{
 	}
 
 	private void loadAvatar() {
-		OBJLoader loader = new sage.model.loader.OBJLoader();
-//		
-//		devil = loader.loadModel("materials/AvaDevil.obj");
-//		Texture text =  TextureManager.loadTexture2D("materials/UVLayoutPS2.png"); 
-//		devil.scale(2,2, 2);
-//		devil.setTexture(text);
-//		Matrix3D p = devil.getLocalTranslation();
-//		
-//		p.translate(5, 7, 5);
-//		devil.setLocalTranslation(p);
-//		
-//		devil.setLocalTranslation(terrainLocation(devil));
-//		rootNode.addChild(devil);
-//		
+		new sage.model.loader.OBJLoader();
 	
 		
 		npc = ava.getPlayerAvatar("stat.mesh.xml","stat.material","stat.skeleton.xml");
@@ -304,16 +277,16 @@ public class MyGame extends BaseGame{
 //		princess.setLocalTranslation(terrainLocation(princess));
 //		//rootNode.addChild(princess);
 	}
-	private Matrix3D terrainLocation(TriMesh avatar){
-		Point3D avLoc = new Point3D(avatar.getLocalTranslation().getCol(3));
-		float terHeight = hillTerrain.getHeight((float)avLoc.getX(), (float)avLoc.getZ());
-		Matrix3D m = hillTerrain.getLocalTranslation();
-		double ptY = m.getCol(3).getY()+terHeight;
-		Matrix3D dPos = avatar.getLocalTranslation(); 
-		dPos.translate(dPos.getCol(3).getX(), ptY, dPos.getCol(3).getZ());
-		
-		return dPos; 
-	}
+//	private Matrix3D terrainLocation(TriMesh avatar){
+//		Point3D avLoc = new Point3D(avatar.getLocalTranslation().getCol(3));
+//		float terHeight = hillTerrain.getHeight((float)avLoc.getX(), (float)avLoc.getZ());
+//		Matrix3D m = hillTerrain.getLocalTranslation();
+//		double ptY = m.getCol(3).getY()+terHeight;
+//		Matrix3D dPos = avatar.getLocalTranslation(); 
+//		dPos.translate(dPos.getCol(3).getX(), ptY, dPos.getCol(3).getZ());
+//		
+//		return dPos; 
+//	}
 
 	protected void shutdown(){
 		super.shutdown();
@@ -362,7 +335,7 @@ public class MyGame extends BaseGame{
 				ForwardAvaAction avaFor = new ForwardAvaAction(mesh, setSpeed);
 				LeftwardAvaAction avaLeft = new LeftwardAvaAction(mesh, setSpeed );
 				
-				IAction quitgame = new QuitGameAction(this); 
+				new QuitGameAction(this); 
 				im.associateAction(gp, net.java.games.input.Component.Identifier.Axis.RY, avaFor, IInputManager.INPUT_ACTION_TYPE.REPEAT_WHILE_DOWN);
 				im.associateAction(gp, net.java.games.input.Component.Identifier.Axis.RX, avaLeft, IInputManager.INPUT_ACTION_TYPE.REPEAT_WHILE_DOWN);
 		

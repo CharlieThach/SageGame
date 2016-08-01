@@ -4,7 +4,6 @@ import graphicslib3D.Matrix3D;
 import graphicslib3D.Point3D;
 import graphicslib3D.Vector3D;
 import sage.display.IDisplaySystem;
-import sage.scene.Group;
 import sage.scene.SkyBox;
 import sage.scene.state.RenderState;
 import sage.scene.state.TextureState;

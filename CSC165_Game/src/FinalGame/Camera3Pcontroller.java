@@ -2,7 +2,6 @@ package FinalGame;
 
 import graphicslib3D.Point3D;
 import graphicslib3D.Vector3D;
-import net.java.games.input.Component.Identifier.Axis;
 import net.java.games.input.Event;
 import sage.camera.ICamera;
 import sage.input.IInputManager;
@@ -33,8 +32,8 @@ private Vector3D worldUpVec;
 	 update(0.0f); // initialize camera state
 	 }
 	public void setupInput(IInputManager im, String cn) {
-		IAction orbitAction = new OrbitAroundAction();
-		IAction zoomAction = new ZoomAction();
+	//	IAction orbitAction = new OrbitAroundAction();
+	//	IAction zoomAction = new ZoomAction();
 	//	 im.associateAction(cn, Axis.RX, orbitAction, IInputManager.INPUT_ACTION_TYPE.REPEAT_WHILE_DOWN);
 	//	 im.associateAction(cn, Axis.RY, zoomAction, IInputManager.INPUT_ACTION_TYPE.REPEAT_WHILE_DOWN );
 	}

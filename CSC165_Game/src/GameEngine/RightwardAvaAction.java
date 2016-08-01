@@ -17,7 +17,7 @@ public class RightwardAvaAction extends AbstractInputAction implements IAction{
 	public void performAction(float time, Event e) {
 	
 		Matrix3D avaDir = ava.getLocalTranslation();
-		double z = ava.getLocalTranslation().getRow(3).getZ(); 
+		ava.getLocalTranslation().getRow(3).getZ(); 
 		avaDir.translate(ava.getLocalTranslation().getRow(3).getX()-.1, 0, 0);
 		ava.setLocalTranslation(avaDir);
 		ava.updateWorldBound();

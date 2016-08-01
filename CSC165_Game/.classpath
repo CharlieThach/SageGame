@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="A1.old"/>
-	<classpathentry kind="src" path="materials"/>
+	<classpathentry kind="src" path="AvatarMaterial"/>
 	<classpathentry kind="src" path="skybox"/>
 	<classpathentry kind="src" path="pictures"/>
 	<classpathentry kind="src" path="music"/>

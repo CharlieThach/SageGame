@@ -4,22 +4,20 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.UUID;
-import java.util.Vector;
-
 import graphicslib3D.Vector3D;
 import sage.networking.client.GameConnectionClient;
 
 public class MyClient extends GameConnectionClient {
 private MyGame game;
 private UUID id;
-private Vector<Avatar> avatar; 
+//private Vector<Avatar> avatar; 
 private Vector3D ghostPosition;
 	public MyClient(InetAddress remoteAddr, int remotePort, InetAddress localAddr, int localPort,
 			ProtocolType protocolType, MyGame game) throws IOException {
 		super(remoteAddr, remotePort, localAddr, localPort, protocolType);
 		this.game = game;
 		this.id = UUID.randomUUID();
-		this.avatar = new Vector<Avatar>(); 
+	//	this.avatar = new Vector<Avatar>(); 
 		
 	}
 	public void processPacket (Object msg){

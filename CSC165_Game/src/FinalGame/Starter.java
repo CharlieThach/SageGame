@@ -13,5 +13,8 @@ public class Starter {
 		System.out.println("You are connecting to "+ ip);
 		MyGame game = new MyGame(ip, 4040); 
 		game.start();
+
+		//prevent memory leak 
+		scanner.close();
 	}
 }
